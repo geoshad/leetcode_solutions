@@ -20,7 +20,7 @@ def twoSum(self, nums, target):
 The following problem involves a function that checks whether a given integer, `x`, is a palindrome; if it is, `True` is returned. To solve this challenge, the integer is first converted to a string. A second variable is created to hold the reversed string order, to which it is then compared to the original string. 
 
 ```
-    def isPalindrome(self, x):
+def isPalindrome(self, x):
         string_x = str(x)
         reversed_x = string_x[::-1]
         
@@ -29,3 +29,21 @@ The following problem involves a function that checks whether a given integer, `
         else:
             return False
 ```
+
+## 13. Roman to Integer
+
+The following problem involves a function that passes through a string of a roman numeral, and converts it into its corresponding integer. To make solving this problem easier, a dictionary was created for roman numerals and their matching values. Another variable is created for storing the result. The string is then iterated through, checking for the corresponding value from the dictionary. For example, if `s[i]` is 'X', then `roman_dict[s[i]]` is 10. 
+
+To account for roman numerals such as IV and IX, where a smaller number appears first, the if statement checks if the current numeral is smaller than the next in the input string; the smaller number is then subtracted. Otherwise, the roman value is added to the result.
+
+```
+def romanToInt(self, s):
+        roman_dict = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        total = 0
+        for i in range(len(s)):
+            if i < len(s) - 1 and roman_dict[s[i]] < roman_dict[s[i+1]]:
+                  total -= roman_dict[s[i]]
+            else:
+                total += roman_dict[s[i]]
+        return total
+        ```
