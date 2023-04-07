@@ -16,3 +16,16 @@ def twoSum(self, nums, target):
 ```
 
 ## 9. Palindrome Number
+
+The following problem involves a function that checks whether a given integer, `x`, is a palindrome; if it is, `True` is returned. To solve this challenge, the integer is first converted to a string. A second variable is created to hold the reversed string order, to which it is then compared to the original string. 
+
+```
+    def isPalindrome(self, x):
+        string_x = str(x)
+        reversed_x = string_x[::-1]
+        
+        if string_x == reversed_x:
+            return True
+        else:
+            return False
+```
