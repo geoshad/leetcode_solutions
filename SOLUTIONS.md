@@ -59,7 +59,7 @@ def longestCommonPrefix(self, strs):
         for i in strs:
             # loops until conditions are met
             while not i.startswith(prefix):
-                # prefix becomes all characters but last, to account for longer commonalities
+                # prefix removes letters from right
                 prefix = prefix[:-1] 
         return prefix
 ```
