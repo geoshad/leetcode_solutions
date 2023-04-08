@@ -2,6 +2,8 @@
 
 My notes on Leetcode problems, 2023. Leetcode puts a high emphasis on runtime efficiency and memory usage. Each challenge is scored by the accuracy of its output, and is tested against various cases. I have opted to use Python to complete these problems, due to my enjoyment of the language. 
 
+# Easy Problems
+
 ## 1. Two Sum
 
 Two Sum involves finding two numbers in a given array, `nums`, that sum to a `target` value, and return them. Solving this problem required two nested `for` loops to simultaneously iterate through the array's indexes. For each iteration, an if statement would check if the current index values summed to the target value. From there, either the index values, or an empty set are returned, depending on the result.
@@ -48,7 +50,7 @@ def romanToInt(self, s):
         return total
 ```
 
-## Longest Common Prefix
+## 14. Longest Common Prefix
 
 The following function takes an array of strings, and prints their longest shared prefix. For exampling, an array of `["dogs", "dogma", "dear"]` would print a shared prefix of "d". To solve this problem, the prefix gets the value of the first index (i.e., "dog"), then the array is iterated through to find prefix commonalities. This is done by checking if the array strings start with the prefix. If not, then the prefix gradually removes letters from its right, until it satisfies the condition. In the case that there are no shared prefixes, the variable will eventually become an empty string. The prefix is then returned.
 
@@ -63,3 +65,29 @@ def longestCommonPrefix(self, strs):
                 prefix = prefix[:-1] 
         return prefix
 ```
+
+## 20. Valid Parentheses
+
+The following function takes a string of brackets, and returns True if the brackets are paired appropriately, and in correct opening and close order; if not, False is returned. This problem stumped me quite a lot, but after some research, it seemed the use of a stack was appropriate. Each character in the string is iterated through, and the stack keeps track of opening brackets. If the current character is an opening bracket, it is pushed onto the stack. If it is a closing bracket, the function checks if the last opening bracket matches with the closing bracket, according to the dictionary. If there is no matching opening bracket, or the opening and closing brackets do not match, the function returns False to indicate that the input string has invalid pairings. After the loop, if there are any unmatched opening brackets remaining on the stack, False is returned. Otherwise, the function returns True to indicate valid pairings in the string.
+
+```
+def isValid(self, s):
+        # mapping of bracket values
+        bracket_dict = {'(':')', '[':']', '{':'}'}
+        # using stack to keep track of bracket ordering
+        stack = []
+
+        # loop through the given string
+        for bracket in s:
+            # if the current bracket is a key in the dict, push onto stack
+            if bracket in bracket_dict:
+                stack.append(bracket)
+            elif len(stack) == 0 or bracket_dict[stack.pop()] != bracket:
+                return False
+        # will either return True or False
+        return len(stack) == 0
+```
+
+# Medium Problems
+
+##
