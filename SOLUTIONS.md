@@ -90,4 +90,38 @@ def isValid(self, s):
 
 # Medium Problems
 
-##
+## 2. Add Two Numbers
+
+Goodness, this problem had me stumped. Many of my solutions were seemingly correct, then suddenly failed a test case check further down the line. 
+
+This problem involved adding the contents of two linked lists together, as if they were two integers. Then, the sum should be returned as its own linked list. I created a helper function to convert the lists to strings, which were then reversed and converted to integers. Personally, the manipulation of strings is much easier to operate than simply using linked list notation. After the strings have been combined, the result is mapped into a list of integers, which is then converted into a linked list.
+
+```
+# helper function to convert linked lists to string
+def linkedListToString(self, head):
+        s = []
+        while head:
+            s.append(str(head.val))
+            head = head.next
+        return ''.join(s)
+
+def addTwoNumbers(self, l1, l2):
+        # convert lists to string
+        s1 = self.linkedListToString(l1)
+        s2 = self.linkedListToString(l2)
+        
+        # reverse the strings and convert to integers
+        n1 = int(''.join(s1[::-1]))
+        n2 = int(''.join(s2[::-1]))
+        
+        # add the two integers and convert the result to a list
+        result = list(map(int, str(n1+n2)[::-1]))
+        
+        # convert the list to a linked list
+        head = ListNode()
+        curr = head
+        for value in result:
+            curr.next = ListNode(val)
+            curr = curr.next
+        return head.next
+```
