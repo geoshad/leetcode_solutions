@@ -1,6 +1,6 @@
 # Solutions
 
-My notes on Leetcode problems, 2023. Each challenge is scored by the accuracy of its output, and is tested against various cases. I have opted to use Python to complete these problems due to my enjoyment of the language.
+My notes on Leetcode problems, 2023. Leetcode puts a high emphasis on runtime efficiency and memory usage. Each challenge is scored by the accuracy of its output, and is tested against various cases. I have opted to use Python to complete these problems, due to my enjoyment of the language. 
 
 ## 1. Two Sum
 
@@ -46,4 +46,20 @@ def romanToInt(self, s):
             else:
                 total += roman_dict[s[i]]
         return total
+```
+
+## Longest Common Prefix
+
+The following function takes an array of strings, and prints their longest shared prefix. For exampling, an array of `["dogs", "dogma", "dear"]` would print a shared prefix of "d". To solve this problem, the prefix gets the value of the first index (i.e., "dog"), then the array is iterated through to find prefix commonalities.
+
+```
+def longestCommonPrefix(self, strs):
+        # get first string
+        prefix = strs[0]
+        for i in strs:
+            # loops until conditions are met
+            while not i.startswith(prefix):
+                # prefix becomes all characters but last, to account for longer commonalities
+                prefix = prefix[:-1] 
+        return prefix
 ```
