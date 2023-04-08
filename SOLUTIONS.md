@@ -200,3 +200,33 @@ def longestPalindrome(self, s):
                 max_length = even_string
         return max_length
 ```
+
+## 7. Reverse Integer
+
+```
+def reverse(self, x):
+        # negative flag, as only the integer is flipped
+        negative = False
+
+        # temporarily converting to positive for easier string handling
+        if x < 0:
+            negative = True
+            x = x * -1
+
+        # convert to string for easy flip
+        str_x = str(x)
+        str_x = str_x[::-1]
+
+        # getting minus for negative values
+        if negative:
+            str_x = "-" + str_x
+
+        # converting back to int
+        rev_x = int(str_x)
+
+        # checking if x is in the correct integer range of [-2^31, 2^31 - 1]
+        if rev_x < -2**31 or rev_x > 2**31 - 1:
+            return 0
+
+        return rev_x
+```
