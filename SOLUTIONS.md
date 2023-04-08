@@ -50,7 +50,7 @@ def romanToInt(self, s):
 
 ## Longest Common Prefix
 
-The following function takes an array of strings, and prints their longest shared prefix. For exampling, an array of `["dogs", "dogma", "dear"]` would print a shared prefix of "d". To solve this problem, the prefix gets the value of the first index (i.e., "dog"), then the array is iterated through to find prefix commonalities.
+The following function takes an array of strings, and prints their longest shared prefix. For exampling, an array of `["dogs", "dogma", "dear"]` would print a shared prefix of "d". To solve this problem, the prefix gets the value of the first index (i.e., "dog"), then the array is iterated through to find prefix commonalities. This is done by checking if the array strings start with the prefix. If not, then the prefix gradually removes letters from its right, until it satisfies the condition. In the case that there are no shared prefixes, the variable will eventually become an empty string. The prefix is then returned.
 
 ```
 def longestCommonPrefix(self, strs):
