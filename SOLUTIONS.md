@@ -125,3 +125,50 @@ def addTwoNumbers(self, l1, l2):
             curr = curr.next
         return head.next
 ```
+
+## 3. Longest Substring Without Repeating Characters
+
+Initially using a different method, which has a nested for loop to iterate through the string and create substrings of s, between the indices `i` and `j-1` inclusive. The function checks whether the substring contains any repeated characters by comparing the length of the set substring to the length of the substring itself; the creation of the set ensures no repeated characters.
+
+If the substring has no repeated character, the function checks whether its length is greater than the length of the current max_length substring; if so, then max_length is updated to be the value of the current substring. This function ultimately failed the last test case, wherein s is a string of 30,000 characters; the time complexity was too high, at O(n^3).
+
+```
+def lengthOfLongestSubstring(self, s):
+        max_length = ""
+        for i in range(len(s)):
+            for j in range(i + 1, len(s) + 1):
+                # slice at indexes to create substring of values between
+                substr = s[i:j]
+                if len(set(substr)) == len(substr):
+                    if len(substr) > len(max_length):
+                        max_length = substr
+        return len(max_length)
+```
+
+After researching, I found that a more efficient approach is to use a sliding window, where we maintain a window of characters that contains no repeated characters, and slide the window to the right, updating the maximum length of the non-repeating substring as we go.
+
+```
+def lengthOfLongestSubstring(self, s):
+        # sliding window
+        # left and right boundaries of current window
+        left = 0
+        right = 0
+        
+        # currently seen window
+        current = set()
+        # tracking longest substring
+        max_length = 0
+        while right < len(s):
+            if s[right] not in current:
+                # shifting right
+                current.add(s[right])
+                max_length = max(max_length, right - left + 1)
+                right += 1
+            else:
+                # shifting right
+                current.remove(s[left])
+                left += 1
+        return max_length
+```
+
+##
