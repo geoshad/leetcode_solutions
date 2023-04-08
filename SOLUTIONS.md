@@ -171,4 +171,32 @@ def lengthOfLongestSubstring(self, s):
         return max_length
 ```
 
-##
+## 5. Longest Palindromic Substring
+
+```
+def longestPalindrome(self, s):
+        # helper function to represent the center of the palindrome, going outwards
+        def expandAroundCenter(left, right):
+            # only occurs as long as palindrome is valid
+            # goes outward
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                left -= 1
+                right += 1
+            return s[left+1:right]
+
+        # tracking max substring
+        max_length = ""
+
+        if len(s) == 0:
+            return ""
+
+        for index in range(len(s)):
+            odd_string = expandAroundCenter(index, index)
+            even_string = expandAroundCenter(index, index + 1)
+
+            if len(odd_string) > len(max_length):
+                max_length = odd_string
+            if len(even_string) > len(max_length):
+                max_length = even_string
+        return max_length
+```
