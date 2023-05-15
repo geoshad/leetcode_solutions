@@ -40,14 +40,20 @@ To account for roman numerals such as IV and IX, where a smaller number appears 
 
 ```
 def romanToInt(self, s):
-        roman_dict = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
-        total = 0
+        # creating dict for corresponding values
+        roman_dict = { 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000 }
+        roman_int = 0
+
+        # for each letter in the numeral string
         for i in range(len(s)):
+            # while string in index range
+            # if current numeral is less than the next, subtract it (IX, IV)
             if i < len(s) - 1 and roman_dict[s[i]] < roman_dict[s[i+1]]:
-                  total -= roman_dict[s[i]]
+                roman_int -= roman_dict[s[i]]
             else:
-                total += roman_dict[s[i]]
-        return total
+            # otherwise the numeral gets added
+                roman_int += roman_dict[s[i]]
+        return roman_int
 ```
 
 ## 14. Longest Common Prefix
@@ -56,12 +62,12 @@ The following function takes an array of strings, and prints their longest share
 
 ```
 def longestCommonPrefix(self, strs):
-        # get first string
+        # get first string in array
         prefix = strs[0]
         for i in strs:
             # loops until conditions are met
             while not i.startswith(prefix):
-                # prefix removes letters from right
+                # gradually stripping letters from right end of string until prefix condition is met (which may be never)
                 prefix = prefix[:-1] 
         return prefix
 ```
